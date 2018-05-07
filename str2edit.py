@@ -58,15 +58,22 @@ class MyEditDistance(MyDataHandler):
         self.__len1 = int()
         self.__len2 = int()
 
-    def get_distance(self, s1):
-        distance_list = list()
+    def get_distance(self):
+        s1 = input("Please input word(EXIT) - ")
 
-        if s1 in self.data_dict:
-            distance_list = [s1]
-        else:
-            distance_list = self.__get_distance_list_in_dict(s1)
+        while s1 != "EXIT":
+            s1 = s1.lower()
 
-        print(distance_list)
+            if s1 in self.data_dict:
+                print("\ndictionary has key!")
+                print(s1.ljust(15), self.data_dict[s1])
+            else:
+                distance_list = self.__get_distance_list_in_dict(s1)
+                print("\nEdit Distance is", distance_list[0])
+                for k in distance_list[1]:
+                    print(k.ljust(15), ', '.join(self.data_dict[k]))
+
+            s1 = input("\nPlease Input Word(EXIT) - ")
 
     def __get_distance_list_in_dict(self, s1):
         distance_list = [DEFAULT_DISTANCE, list()]
