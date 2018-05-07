@@ -10,5 +10,5 @@ from EditDistance.str2edit import MyEditDistance
 
 if __name__ == '__main__':
     ed = MyEditDistance()
-    ed.set_edit_distance("perk", "park")
-    ed.print_table()
+    # ed.set_edit_distance("parr", "park")
+    ed.get_distance("cont")

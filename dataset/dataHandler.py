@@ -6,7 +6,7 @@ from collections import OrderedDict
 
 class MyDataHandler:
     def __init__(self):
-        self.__data_dict = dict()
+        self.__data_dict = OrderedDict()
 
     @property
     def data_dict(self):
@@ -65,3 +65,16 @@ class MyDataHandler:
                 print("File name is", "'" + save_path + "'", "in the", "'" + dir_path[:-1] + "'", "directory", "\n\n")
         except FileNotFoundError:
             print("Can not save dump file!\n\n")
+
+    def can_load(self):
+        def __load(data_dict):
+            for k in sorted(data_dict.keys()):
+                self.data_dict[k] = data_dict[k]
+        try:
+            with open(dir_path + save_path, 'r') as r_file:
+                __load(json.load(r_file))
+                print("\nSuccess loading from", "'" + save_path + "'", "!!\n\n")
+                return True
+        except FileNotFoundError:
+            print("\nCan not find to load file!\n\n")
+            return False
